@@ -1,22 +1,22 @@
 from textwrap import dedent
 
 
-def get_book_text(book_path):
+def get_book_text(book):
     # utf-8-sig strips a UTF-8 BOM if present (e.g. '\ufeff' at file start).
-    with open(book_path, encoding="utf-8-sig") as f:
+    with open(book, encoding="utf-8-sig") as f:
         return f.read()
 
-def get_num_words(book_path):
-    words = get_book_text(book_path).split()
+def get_num_words(book):
+    words = get_book_text(book).split()
     return len(words)
 
 def sort_on(items):
     return items["num"]
 
-def get_char_count(book_path):
+def get_char_count(book):
     char_count = {}
     count_list =[]
-    for char in get_book_text(book_path):
+    for char in get_book_text(book):
         char = char.lower()
         if char.isalpha() == False:
             continue
@@ -31,11 +31,11 @@ def get_char_count(book_path):
     
     text1 = dedent(f"""
     ============ BOOKBOT ============
-    Analyzing book found at {book_path}...
+    Analyzing book found at {book}...
     ----------- Word Count ----------
     """).strip()
     print(text1)
-    num = get_num_words(book_path)
+    num = get_num_words(book)
     print(f"Found {num} total words")
     
     text3 = dedent("""
